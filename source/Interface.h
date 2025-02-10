@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INTERFACE_H_
-#define INTERFACE_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -53,6 +52,9 @@ public:
 
 	// Get a named value.
 	double GetValue(const std::string &name) const;
+
+	// Get a named list.
+	const std::vector<double> &GetList(const std::string &name) const;
 
 
 private:
@@ -242,8 +244,5 @@ private:
 	std::vector<Element *> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
+	std::map<std::string, std::vector<double>> lists;
 };
-
-
-
-#endif
