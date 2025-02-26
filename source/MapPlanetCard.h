@@ -13,15 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PLANET_CARD_H_
-#define MAP_PLANET_CARD_H_
+#pragma once
 
 #include "MapPanel.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 
 #include <string>
-#include <vector>
 
+class MapDetailPanel;
 class Point;
 class StellarObject;
 
@@ -45,10 +44,10 @@ public:
 
 public:
 	// For the orbit selection to work properly this has to be a planet.
-	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited);
+	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited, const MapDetailPanel *parent);
 	// Return if this one was clicked, whether or not we did something about it.
 	ClickAction Click(int x, int y, int clicks);
-	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
+	// Draw this at the corresponding scroll; if it is not outside bounds, and return if we drew it.
 	bool DrawIfFits(const Point &uiPoint);
 	// If this object is currently being shown.
 	bool IsShown() const;
@@ -75,6 +74,7 @@ protected:
 
 private:
 	const Planet *planet;
+	const MapDetailPanel *parent;
 
 	unsigned number;
 	bool isSelected = false;
@@ -97,7 +97,3 @@ private:
 	// The currently select category (outfitter, shipyard, ...)
 	unsigned selectedCategory = 0;
 };
-
-
-
-#endif
